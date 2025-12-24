@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hafiz Hassan Abdullah - AI Engineer Portfolio</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10b981', // Emerald 500
+                        secondary: '#0f766e', // Teal 700
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Custom Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #10b981, #0f766e);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2 cursor-pointer group" onclick="renderHome()">
+                <div
+                    class="bg-gradient-to-tr from-emerald-500 to-teal-600 text-white p-2 rounded-lg shadow-lg group-hover:rotate-12 transition duration-300">
+                    <i class="fas fa-brain text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-extrabold tracking-tight text-gray-800">Hassan<span
+                        class="text-emerald-600">.AI</span></h1>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <a href="#" onclick="renderHome()"
+                    class="hidden md:block font-medium text-gray-600 hover:text-emerald-600 transition">Home</a>
+                <a href="#services-section"
+                    class="hidden md:block font-medium text-gray-600 hover:text-emerald-600 transition">Services</a>
+                <a href="#skills-section"
+                    class="hidden md:block font-medium text-gray-600 hover:text-emerald-600 transition">Skills</a>
+                <a href="#projects-section"
+                    class="hidden md:block font-medium text-gray-600 hover:text-emerald-600 transition">Projects</a>
+                <a href="#experience-section"
+                    class="hidden md:block font-medium text-gray-600 hover:text-emerald-600 transition">Experience</a>
+                <a href="#contact-section"
+                    class="hidden md:block font-medium text-gray-600 hover:text-emerald-600 transition">Contact</a>
+
+                <div class="relative cursor-pointer hover:scale-110 transition duration-200" onclick="renderShortlist()"
+                    title="Project Shortlist">
+                    <div class="bg-gray-100 p-2 rounded-full text-emerald-600">
+                        <i class="fas fa-folder-plus text-xl"></i>
+                    </div>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white shadow-sm">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="app" class="flex-grow pt-20">
+        <!-- Dynamic Content Injected Here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 relative overflow-hidden mt-auto">
+        <!-- Decorative gradient blob -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-500">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <h2 class="text-3xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-brain text-emerald-500"></i> Hassan.AI
+                    </h2>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Delivering intelligent AI solutions, generative
+                        models, and scalable automation pipelines.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/in/hafiz-hassan-abdullah-28a861246" target="_blank"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition duration-300"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/rajahassan38201" target="_blank"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition duration-300"><i
+                                class="fab fa-github"></i></a>
+                        <a href="mailto:rajahassan38201@gmail.com"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition duration-300"><i
+                                class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-emerald-400">Quick Links</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" onclick="renderHome()" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#projects-section" class="hover:text-white transition">Projects</a></li>
+                        <li><a href="#skills-section" class="hover:text-white transition">Skills</a></li>
+                        <li><a href="#contact-section" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-emerald-400">Contact Info</h3>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-emerald-500"></i>
+                            <span>G13/4, Islamabad, Pakistan</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone-alt text-emerald-500"></i>
+                            <span>+92 302 3536363</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-emerald-500"></i>
+                            <span class="break-all">rajahassan38201@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter/Resume -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-emerald-400">Download Resume</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Get a detailed PDF version of my experience and skills.</p>
+                    <div class="flex flex-col gap-2">
+                        <a href="My Resume 01.pdf" download="Hafiz_Hassan_Abdullah_CV.pdf"
+                            class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold py-3 px-4 rounded-lg hover:shadow-lg hover:scale-[1.02] transition duration-300 text-center flex items-center justify-center gap-2">
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Hafiz Hassan Abdullah. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal (Hidden by default) -->
+    <div id="product-modal"
+        class="fixed inset-0 z-[60] hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300">
+        <div
+            class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-8 transform transition-all scale-100 fade-in relative overflow-hidden">
+            <!-- Modal Background Blob -->
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-emerald-100 rounded-full opacity-50"></div>
+
+            <button onclick="closeModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition bg-white rounded-full p-2 hover:bg-red-50 z-10">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+
+            <div class="text-center mb-6 relative z-10">
+                <div id="modal-emoji" class="text-6xl mb-4 drop-shadow-lg filter float">🤖</div>
+                <h3 id="modal-title" class="text-2xl font-extrabold text-gray-800 mb-2">Project Name</h3>
+                <div
+                    class="inline-block bg-emerald-50 text-emerald-700 px-4 py-1 rounded-full font-bold text-sm border border-emerald-100">
+                    <span id="modal-tech-stack">Tech Stack</span>
+                </div>
+            </div>
+
+            <div class="space-y-4 mb-6">
+                <p id="modal-desc" class="text-gray-600 text-center text-sm leading-relaxed">
+                    Description goes here...
+                </p>
+            </div>
+
+            <div class="mt-8 flex justify-between items-center border-t border-gray-100 pt-6">
+                <a id="modal-link" href="#" target="_blank"
+                    class="text-emerald-600 font-bold hover:underline flex items-center gap-1">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+                <button onclick="addToShortlistFromModal()"
+                    class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-xl font-bold shadow-emerald-200 shadow-lg hover:shadow-xl hover:scale-105 transition transform flex items-center gap-2">
+                    <i class="fas fa-plus"></i> Shortlist
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Data extracted from Resume ---
+        const categories = [
+            { id: 'gen-ai', name: 'Generative AI', icon: '🧠', color: 'from-emerald-400 to-teal-500', desc: 'LLMs, RAG, & Agents' },
+            { id: 'data-science', name: 'Data Science', icon: '📊', color: 'from-blue-400 to-indigo-500', desc: 'Analysis & Prediction' },
+            { id: 'automation', name: 'Automation', icon: '⚙️', color: 'from-orange-400 to-red-500', desc: 'Pipelines & Scraping' },
+            { id: 'web-dev', name: 'Web Dev', icon: '💻', color: 'from-purple-400 to-pink-500', desc: 'FastAPI & ASP.NET' }
+        ];
+
+        const projects = [
+            { id: 1, name: 'LangGraph SQL Agent', category: 'gen-ai', tech: 'FastAPI, LangGraph, OpenAI', desc: 'Intelligent SQL agent that translates natural language queries into SQL commands for real-time data retrieval.', emoji: '🗄️', link: 'https://github.com/rajahassan38201/LangGraph-SQL-Agent' },
+            { id: 2, name: 'Web Scraper Agent', category: 'automation', tech: 'FastAPI, LangGraph, Tavily', desc: 'Automated data collection agent extracting structured data from multiple websites for AI-driven analysis.', emoji: '🕷️', link: 'https://github.com/rajahassan38201/LangGraph-Real-Time-Web-Scraping-Agent' },
+            { id: 5, name: 'Fashion Recommender', category: 'data-science', tech: 'ResNet50, KNN, Deep Learning', desc: 'Deep learning model processing image datasets to provide personalized fashion recommendations.', emoji: '👗', link: 'https://github.com/rajahassan38201/Fashion-Recommendation-System-Deep-Learning-Project' },
+            { id: 3, name: 'Smart Resume Analyzer', category: 'gen-ai', tech: 'LangChain, Gemini API', desc: 'ATS tool leveraging AI to evaluate CVs against job requirements and rank candidate suitability.', emoji: '📄', link: 'https://github.com/rajahassan38201/ATS-Resume-Analyzer-using-LangChain' },
+            { id: 4, name: 'Chat with PDF (RAG)', category: 'gen-ai', tech: 'LangChain, FAISS, RAG', desc: 'Interactive PDF Q&A system allowing users to interact with complex documents via natural language.', emoji: '📚', link: 'https://github.com/rajahassan38201/LangChain-Chat-With-PDF-Question-Answering-System' },
+
+            { id: 6, name: 'House Price Prediction', category: 'data-science', tech: 'Regression, Streamlit', desc: 'ML model to predict house prices across Pakistan with feature engineering and optimization.', emoji: '🏠', link: 'https://github.com/rajahassan38201/Pakistan-House-Price-Prediction-Streamlit-App' },
+            { id: 7, name: 'Review Analysis Agent', category: 'gen-ai', tech: 'LangGraph, Sentiment Analysis', desc: 'AI agent to analyze customer reviews and generate automated, personalized responses.', emoji: '💬', link: 'https://github.com/rajahassan38201/LangGraph-FastAPI-Review-Analysis-And-Reply-Al-Assistant' },
+            { id: 8, name: 'Blog Content Creator', category: 'gen-ai', tech: 'LangGraph, SEO', desc: 'Automated blog generator producing SEO-friendly articles based on user keywords.', emoji: '✍️', link: 'https://github.com/rajahassan38201/LangGraph-LangChain-FastAPI-Blog-Generator' }
+        ];
+
+        const experience = [
+            { company: 'Logic Powered Solutions', role: 'Generative AI Engineer', date: 'Oct 2025 - Present', desc: 'Deploying RAG pipelines, managing AI workflows with LangGraph, and building automation pipelines.' },
+            { company: 'Rhombix Technologies', role: 'Data Scientist', date: 'Aug 2025 - Oct 2025', desc: 'Designing ML models for predictive tasks and integrating FastAPI endpoints.' },
+            { company: 'Octathorn (NASTP)', role: 'AI Automation Intern', date: 'Sep 2025', desc: 'Designed end-to-end workflows using UiPath and n8n, integrating AI models with RPA.' },
+            { company: 'Saiket Systems', role: 'Machine Learning Intern', date: 'Jan 2025 - Mar 2025', desc: 'Data preprocessing, cleaning, and model evaluation using Python and Scikit-Learn.' }
+        ];
+
+        // --- State ---
+        let shortlist = [];
+        let currentProject = null;
+
+        // --- Components ---
+
+        function getHeroSection() {
+            return `
+            <section class="relative bg-gradient-to-br from-emerald-50 to-teal-100 overflow-hidden min-h-[calc(100vh-5rem)] flex items-center">
+                <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-emerald-100/50 to-transparent rounded-bl-[100px]"></div>
+                <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center w-full">
+                    <div class="w-full md:w-1/2 mb-10 md:mb-0 slide-up">
+                        <span class="bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full text-sm font-bold tracking-wide uppercase mb-4 inline-block">Available for Projects</span>
+                        
+                        <h1 class="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                            Building <br/> Intelligent <br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">AI Solutions</span> for Your Business
+                        </h1>
+                        <h2 class="text-2xl font-bold text-gray-700 mb-4">AI Engineer & Data Scientist</h2>
+                        <p class="text-gray-600 text-lg mb-8 leading-relaxed max-w-lg">
+                            Specializing in Generative AI, Agentic AI, RAG Systems, ChatBots, and scalable Machine Learning solutions.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#contact-section" class="bg-gray-900 text-white px-8 py-4 rounded-lg font-bold shadow-xl hover:bg-emerald-600 transition transform hover:-translate-y-1 text-center">
+                                Book Consultation
+                            </a>
+                            <a href="#projects-section" class="bg-white text-gray-800 border border-gray-200 px-8 py-4 rounded-lg font-bold hover:border-emerald-500 hover:text-emerald-600 transition transform hover:-translate-y-1 text-center">
+                                View Portfolio
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center relative">
+                        <div class="relative w-full max-w-lg">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-emerald-400 to-teal-300 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+                            <!-- Composed Emoji Illustration -->
+                            <div class="float text-center">
+                                <div class="text-[150px] md:text-[200px] leading-none drop-shadow-2xl filter">👨‍💻</div>
+                                <div class="absolute top-10 -left-4 text-8xl drop-shadow-xl animate-bounce" style="animation-duration: 3s;">🧠</div>
+                                <div class="absolute bottom-0 -right-4 text-8xl drop-shadow-xl animate-bounce" style="animation-duration: 4s;">🐍</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            `;
+        }
+
+        function getServicesSection() {
+            return `
+            <section id="services-section" class="py-20 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 max-w-2xl mx-auto">
+                        <span class="text-emerald-600 font-bold uppercase tracking-wider text-sm">Services</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">How I Can Help Your Business</h2>
+                        <p class="text-gray-500 mt-4">I combine cutting-edge AI research with practical engineering to deliver solutions that drive real results.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                            <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Custom AI Agents</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                Intelligent chatbots and autonomous agents built with LangChain and OpenAI that can handle customer support, internal queries, and complex tasks 24/7.
+                            </p>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> RAG Implementation</li>
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Custom Knowledge Bases</li>
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Multi-Agent Systems</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                            <div class="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 text-2xl mb-6">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Workflow Automation</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                Streamline your operations by connecting apps and automating repetitive data tasks using Python, n8n, and RPA tools.
+                            </p>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Web Scraping & Data Entry</li>
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> API Integrations</li>
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Process Optimization</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300">
+                            <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 text-2xl mb-6">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Data Science & Insights</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                Turn your raw data into actionable insights with custom machine learning models for prediction, classification, and analysis.
+                            </p>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Predictive Analytics</li>
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Data Visualization Dashboards</li>
+                                <li><i class="fas fa-check text-emerald-500 mr-2"></i> Customer Segmentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            `;
+        }
+
+        function getSkillsSection() {
+            // Assigning unique gradient colors to each skill
+            const skills = [
+                { icon: 'fa-python', title: 'Python Expert', desc: 'Pandas, NumPy, FastAPI', color: 'from-blue-500 to-indigo-600' },
+                { icon: 'fa-brain', title: 'Machine Learning', desc: 'TensorFlow, Scikit-Learn', color: 'from-orange-400 to-pink-500' },
+                { icon: 'fa-network-wired', title: 'Deep Learning', desc: 'TensorFlow, Keras', color: 'from-purple-500 to-violet-600' },
+                { icon: 'fa-database', title: 'Data Eng', desc: 'SQL, Vector DBs, ETL', color: 'from-cyan-400 to-blue-500' },
+                { icon: 'fa-cogs', title: 'Automation', desc: 'n8n, Selenium, RPA', color: 'from-rose-400 to-red-600' },
+                { icon: 'fa-robot', title: 'Generative AI', desc: 'LangChain, LLMs', color: 'from-emerald-400 to-teal-500' },
+                { icon: 'fa-microchip', title: 'Agentic AI', desc: 'LangGraph, AutoGen', color: 'from-fuchsia-500 to-pink-600' },
+                { icon: 'fa-server', title: 'Database', desc: 'SQL-Server, My-SQL', color: 'from-amber-400 to-orange-500' }
+            ];
+
+            let html = `
+            <section id="skills-section" class="py-16 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-10">
+                        <span class="text-emerald-500 font-bold uppercase tracking-wider text-sm">Technical Stack</span>
+                        <h2 class="text-3xl font-bold text-gray-800 mt-2">Tools I Use to Deliver Results</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            `;
+
+            skills.forEach(f => {
+                // Using the specific color gradient for each card's hover effect
+                html += `
+                    <div class="relative overflow-hidden group flex flex-col items-center text-center p-8 rounded-3xl hover:shadow-2xl transition-all duration-300 border border-gray-100 bg-white hover:-translate-y-2">
+                        <div class="absolute inset-0 bg-gradient-to-br ${f.color} opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                        <div class="relative z-10 w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 text-2xl mb-4 group-hover:bg-white group-hover:text-emerald-600 transition duration-300">
+                            <i class="fas ${f.icon}"></i>
+                        </div>
+                        <h3 class="relative z-10 text-xl font-bold text-gray-800 mb-2 group-hover:text-white transition duration-300">${f.title}</h3>
+                        <p class="relative z-10 text-gray-500 text-sm group-hover:text-emerald-100 transition duration-300">${f.desc}</p>
+                    </div>
+                `;
+            });
+
+            html += `</div></div></section>`;
+            return html;
+        }
+
+        function getProjectsSection() {
+            // Get first 8 products as featured
+            const featuredProjects = projects.slice(0, 8);
+
+            let html = `
+            <section id="projects-section" class="py-20 bg-emerald-50/50">
+                <div class="container mx-auto px-6">
+                    <div class="flex justify-between items-end mb-12">
+                        <div>
+                            <span class="text-emerald-500 font-bold uppercase tracking-wider text-sm">Portfolio</span>
+                            <h2 class="text-3xl font-bold text-gray-800 mt-2">Featured Projects</h2>
+                        </div>
+                        <a href="#" onclick="renderAllProjects()" class="hidden md:flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            `;
+
+            featuredProjects.forEach(prod => {
+                const catColor = categories.find(c => c.id === prod.category)?.color || 'from-emerald-500 to-teal-600';
+
+                html += `
+                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 p-6 flex flex-col items-center text-center group relative overflow-hidden hover:-translate-y-2 border border-gray-100 h-full justify-between">
+                        <!-- Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-br ${catColor} opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                        
+                        <div class="w-full">
+                             <div class="text-6xl mb-4 group-hover:scale-110 transition duration-300 relative z-10 filter drop-shadow-sm mt-4">${prod.emoji}</div>
+                        
+                            <h3 class="text-lg font-bold text-gray-800 relative z-10 group-hover:text-white transition duration-300 leading-tight mb-2">${prod.name}</h3>
+                            <p class="text-xs text-gray-500 mb-4 relative z-10 group-hover:text-emerald-100 transition duration-300 line-clamp-2">${prod.desc}</p>
+                        </div>
+
+                        <div class="w-full mt-auto">
+                            <button onclick="openProductModal(${prod.id})" class="w-full bg-emerald-50 text-emerald-600 font-bold py-3 rounded-xl hover:bg-white hover:text-emerald-600 transition relative z-10 shadow-sm text-sm">View Details</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>
+                 <div class="mt-8 text-center md:hidden">
+                    <button onclick="renderAllProjects()" class="text-emerald-600 font-bold hover:text-emerald-700 transition">View All Projects <i class="fas fa-arrow-right"></i></button>
+                 </div>
+            </div></section>`;
+            return html;
+        }
+
+        function getExperienceSection() {
+            let html = `
+            <section id="experience-section" class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <span class="text-emerald-500 font-bold uppercase tracking-wider text-sm">Professional Journey</span>
+                        <h2 class="text-3xl font-bold text-gray-800 mt-2">Work Experience</h2>
+                        <div class="w-20 h-1 bg-emerald-500 mx-auto mt-4 rounded-full"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            `;
+
+            experience.forEach(job => {
+                html += `
+                    <div class="relative overflow-hidden group bg-gray-50 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-2">
+                        <div class="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-600 opacity-0 group-hover:opacity-5 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex flex-col h-full">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-gray-800 group-hover:text-emerald-600 transition">${job.role}</h3>
+                                <span class="bg-white px-3 py-1 rounded-full text-xs font-bold text-emerald-600 shadow-sm border border-emerald-100">${job.date}</span>
+                            </div>
+                            <h4 class="text-md font-semibold text-gray-500 mb-4"><i class="fas fa-building mr-2"></i>${job.company}</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">${job.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div></div></section>`;
+            return html;
+        }
+
+        function getContactSection() {
+            return `
+            <section id="contact-section" class="py-20 bg-emerald-50 relative">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 slide-up">
+                        <span class="text-emerald-500 font-bold uppercase tracking-wider text-sm">Get in Touch</span>
+                        <h2 class="text-4xl font-bold text-gray-800 mt-2">Let's Work Together</h2>
+                        <div class="w-20 h-1 bg-emerald-500 mx-auto mt-4 rounded-full"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <!-- Contact Info Card -->
+                        <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-10 text-white shadow-2xl relative overflow-hidden slide-up">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500 rounded-full blur-3xl opacity-20 -mr-10 -mt-10"></div>
+                            
+                            <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                            <p class="text-gray-400 mb-8">I'm available for freelance projects, full-time roles, or just a chat about AI.</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-emerald-400 text-xl">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-400 uppercase">Phone / WhatsApp</p>
+                                        <p class="font-semibold">+92 302 3536363</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-emerald-400 text-xl">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-400 uppercase">Email</p>
+                                        <p class="font-semibold break-all">rajahassan38201@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-emerald-400 text-xl">
+                                        <i class="fas fa-map-pin"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-400 uppercase">Location</p>
+                                        <p class="font-semibold">Islamabad, Pakistan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form (Mailto simulation) -->
+                        <form  action="https://api.web3forms.com/submit"
+                        method="POST" class="bg-white p-8 rounded-3xl shadow-lg slide-up">
+                        <input type="hidden" name="access_key" value="9aa26272-4811-416c-be4c-709995509550">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-600 text-sm font-bold mb-2">Your Name</label>
+                                    <input name="name" type="text" id="contact-name" required class="w-full bg-gray-50 text-gray-800 border border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition">
+                                </div>
+                                <div>
+                                    <label for="subject" class="block text-gray-600 text-sm font-bold mb-2">Subject</label>
+                                    <input name="subject" type="text" id="contact-subject" placeholder="Project Inquiry" class="w-full bg-gray-50 text-gray-800 border border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition">
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                    <label for="email" class="block text-gray-600 text-sm font-bold mb-2">Email</label>
+                                    <input name="email" type="email" id="contact-email" required class="w-full bg-gray-50 text-gray-800 border border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition">
+                                </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-600 text-sm font-bold mb-2">Message</label>
+                                <textarea name="message" rows="4" id="contact-msg" required class="w-full bg-gray-50 text-gray-800 border border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-emerald-200 hover:scale-[1.02] transition transform">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            `;
+        }
+
+        // --- Render Functions ---
+
+        function renderHome() {
+            const app = document.getElementById('app');
+            window.scrollTo(0, 0);
+
+            let html = getHeroSection();
+            html += getServicesSection();
+            html += getSkillsSection();
+
+            // Categories/Domains
+            html += `
+            <section id="domains-section" class="py-20 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 slide-up">
+                        <span class="text-emerald-500 font-bold uppercase tracking-wider text-sm">Domains</span>
+                        <h2 class="text-4xl font-bold text-gray-800 mt-2">Specialized Areas</h2>
+                        <div class="w-20 h-1 bg-emerald-500 mx-auto mt-4 rounded-full"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 slide-up">
+            `;
+            categories.forEach(cat => {
+                html += `
+                    <div onclick="renderCategory('${cat.id}')" class="group cursor-pointer bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden relative h-72 flex flex-col items-center justify-center border border-gray-100 p-6">
+                        <div class="absolute inset-0 bg-gradient-to-br ${cat.color} opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                        <div class="text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-6 transition duration-500 relative z-10">${cat.icon}</div>
+                        <h3 class="text-2xl font-bold text-gray-800 group-hover:text-white transition relative z-10">${cat.name}</h3>
+                        <p class="text-gray-500 text-sm mt-2 group-hover:text-white/90 text-center relative z-10">${cat.desc}</p>
+                        <div class="mt-6 w-10 h-10 rounded-full bg-gray-100 group-hover:bg-white flex items-center justify-center transition duration-300 relative z-10">
+                            <i class="fas fa-arrow-right text-gray-400 group-hover:text-emerald-600"></i>
+                        </div>
+                    </div>
+                `;
+            });
+            html += `</div></div></section>`;
+
+            html += getProjectsSection();
+            html += getExperienceSection();
+            html += getContactSection();
+
+            app.innerHTML = html;
+        }
+
+        function renderAllProjects() {
+            const app = document.getElementById('app');
+            window.scrollTo(0, 0);
+
+            let html = `
+                <div class="container mx-auto px-6 py-10 min-h-screen">
+                    <div class="mb-10 fade-in flex flex-col md:flex-row md:items-center gap-6">
+                        <button onclick="renderHome()" class="bg-white border border-gray-200 hover:bg-emerald-50 hover:border-emerald-200 text-gray-600 rounded-xl w-12 h-12 flex items-center justify-center transition shadow-sm"><i class="fas fa-arrow-left"></i></button>
+                        <div>
+                            <span class="text-emerald-500 font-bold uppercase text-xs tracking-wider">Portfolio</span>
+                            <h2 class="text-4xl font-extrabold text-gray-800">All Projects</h2>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 fade-in">
+            `;
+
+            projects.forEach(prod => {
+                const catColor = categories.find(c => c.id === prod.category)?.color || 'from-emerald-500 to-teal-600';
+                html += `
+                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 p-8 border border-gray-100 flex flex-col items-center text-center relative overflow-hidden group hover:-translate-y-2">
+                         <div class="absolute inset-0 bg-gradient-to-br ${catColor} opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                         <div class="absolute top-0 right-0 w-24 h-24 bg-gray-50 rounded-bl-[60px] -mr-4 -mt-4 transition duration-300 group-hover:bg-white/20 z-10"></div>
+                         
+                        <div class="text-6xl mb-6 group-hover:scale-110 transition duration-300 filter drop-shadow-sm relative z-10">${prod.emoji}</div>
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 relative z-10 group-hover:text-white transition leading-tight">${prod.name}</h3>
+                        <p class="text-emerald-600 font-bold text-xs mb-4 relative z-10 group-hover:text-white/90 transition bg-emerald-50 px-2 py-1 rounded-md group-hover:bg-white/20">${prod.tech}</p>
+                        
+                        <button onclick="openProductModal(${prod.id})" class="w-full bg-gray-50 text-gray-800 font-bold py-3 rounded-xl hover:bg-white hover:text-emerald-600 transition duration-300 border border-gray-200 relative z-10 shadow-sm mt-auto">
+                            Details
+                        </button>
+                    </div>
+                `;
+            });
+            html += `</div></div>`;
+            app.innerHTML = html;
+        }
+
+        function renderCategory(catId) {
+            const category = categories.find(c => c.id === catId);
+            const catProjects = projects.filter(p => p.category === catId);
+            const app = document.getElementById('app');
+            window.scrollTo(0, 0);
+
+            let html = `
+                <div class="container mx-auto px-6 py-10 min-h-screen">
+                    <div class="mb-10 fade-in flex flex-col md:flex-row md:items-center gap-6">
+                        <button onclick="renderHome()" class="bg-white border border-gray-200 hover:bg-emerald-50 hover:border-emerald-200 text-gray-600 rounded-xl w-12 h-12 flex items-center justify-center transition shadow-sm"><i class="fas fa-arrow-left"></i></button>
+                        <div>
+                            <span class="text-emerald-500 font-bold uppercase text-xs tracking-wider">Domain</span>
+                            <h2 class="text-4xl font-extrabold text-gray-800">${category.name}</h2>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 fade-in">
+            `;
+
+            if (catProjects.length === 0) {
+                html += `<p class="col-span-4 text-center text-gray-500">No specific projects in this category yet.</p>`;
+            }
+
+            catProjects.forEach(prod => {
+                html += `
+                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 p-8 border border-gray-100 flex flex-col items-center text-center relative overflow-hidden group hover:-translate-y-2">
+                         <div class="absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                         <div class="absolute top-0 right-0 w-24 h-24 bg-gray-50 rounded-bl-[60px] -mr-4 -mt-4 transition duration-300 group-hover:bg-white/20 z-10"></div>
+                         
+                        <div class="text-6xl mb-6 group-hover:scale-110 transition duration-300 filter drop-shadow-sm relative z-10">${prod.emoji}</div>
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 relative z-10 group-hover:text-white transition leading-tight">${prod.name}</h3>
+                        <p class="text-emerald-600 font-bold text-xs mb-4 relative z-10 group-hover:text-white/90 transition bg-emerald-50 px-2 py-1 rounded-md group-hover:bg-white/20">${prod.tech}</p>
+                        
+                        <button onclick="openProductModal(${prod.id})" class="w-full bg-gray-50 text-gray-800 font-bold py-3 rounded-xl hover:bg-white hover:text-emerald-600 transition duration-300 border border-gray-200 relative z-10 shadow-sm mt-auto">
+                            Details
+                        </button>
+                    </div>
+                `;
+            });
+            html += `</div></div>`;
+            app.innerHTML = html;
+        }
+
+        function renderShortlist() {
+            const app = document.getElementById('app');
+            window.scrollTo(0, 0);
+
+            if (shortlist.length === 0) {
+                app.innerHTML = `
+                    <div class="container mx-auto px-6 py-20 text-center fade-in min-h-[60vh] flex flex-col justify-center items-center">
+                        <div class="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-folder-open text-5xl text-gray-300"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">Shortlist Empty</h2>
+                        <p class="text-gray-400 mb-8 max-w-md">You haven't shortlisted any projects yet. Browse my portfolio to select projects you'd like to discuss.</p>
+                        <button onclick="renderHome()" class="bg-emerald-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-600 transition shadow-lg hover:shadow-emerald-200">Browse Projects</button>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <div class="container mx-auto px-6 py-10">
+                    <h2 class="text-3xl font-bold mb-8 fade-in text-gray-800">Project Shortlist <span class="text-lg font-normal text-gray-500 ml-2">(${shortlist.length} items)</span></h2>
+                    <div class="flex flex-col lg:flex-row gap-8 fade-in">
+                        <!-- Items -->
+                        <div class="lg:w-2/3">
+                            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                                <div class="divide-y divide-gray-100">
+            `;
+
+            shortlist.forEach((item, index) => {
+                html += `
+                    <div class="p-6 flex items-center gap-6 hover:bg-gray-50 transition">
+                        <div class="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center text-4xl shrink-0">
+                            ${item.emoji}
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold text-lg text-gray-800">${item.name}</h3>
+                            <p class="text-gray-500 text-sm">${item.tech}</p>
+                        </div>
+                        <div class="text-right">
+                             <a href="${item.link}" target="_blank" class="text-emerald-600 text-sm font-bold mr-4 hover:underline">View Code</a>
+                            <button onclick="removeFromShortlist(${index})" class="text-red-400 hover:text-red-600 text-sm mt-1 font-medium transition">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Box -->
+                        <div class="lg:w-1/3">
+                            <div class="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 sticky top-24">
+                                <h3 class="text-xl font-bold text-gray-800 mb-4">Ready to Discuss?</h3>
+                                <p class="text-gray-500 text-sm mb-6">Send me an inquiry about these specific projects.</p>
+                                
+                                
+                                <button onclick="renderAllProjects()" class="w-full mt-4 text-gray-500 font-semibold hover:text-emerald-600 transition">Add More Projects</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            app.innerHTML = html;
+        }
+
+        // --- Logic Functions ---
+
+        function openProductModal(prodId) {
+            currentProject = projects.find(p => p.id === prodId);
+
+            document.getElementById('modal-title').innerText = currentProject.name;
+            document.getElementById('modal-emoji').innerText = currentProject.emoji;
+            document.getElementById('modal-tech-stack').innerText = currentProject.tech;
+            document.getElementById('modal-desc').innerText = currentProject.desc;
+            document.getElementById('modal-link').href = currentProject.link;
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function addToShortlistFromModal() {
+            // Check if already in list
+            if (!shortlist.some(p => p.id === currentProject.id)) {
+                shortlist.push(currentProject);
+                updateCartCount();
+
+                // Animation logic
+                const icon = document.querySelector('.fa-folder-plus').parentElement;
+                icon.classList.add('scale-125', 'bg-emerald-200');
+                setTimeout(() => icon.classList.remove('scale-125', 'bg-emerald-200'), 200);
+            }
+            closeModal();
+        }
+
+        function removeFromShortlist(index) {
+            shortlist.splice(index, 1);
+            updateCartCount();
+            renderShortlist();
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = shortlist.length;
+        }
+
+        function checkout() {
+            if (shortlist.length === 0) return;
+
+            let body = "Hi Hassan,\n\nI reviewed your portfolio and I'm interested in discussing the following projects:\n\n";
+            shortlist.forEach(item => {
+                body += `• ${item.name} (${item.tech})\n`;
+            });
+            body += `\nPlease let me know when you are available for a chat.\n\nBest regards,`;
+
+            const subject = encodeURIComponent("Project Inquiry via Portfolio");
+            const bodyEnc = encodeURIComponent(body);
+
+            window.location.href = `mailto:rajahassan38201@gmail.com?subject=${subject}&body=${bodyEnc}`;
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const subj = document.getElementById('contact-subject').value;
+            const msg = document.getElementById('contact-msg').value;
+
+            const fullBody = `Name: ${name}\n\nMessage:\n${msg}`;
+            window.location.href = `mailto:rajahassan38201@gmail.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(fullBody)}`;
+        }
+
+        // Initialize
+        renderHome();
+
+    </script>
+</body>
+
+</html>
